@@ -1,0 +1,22 @@
+/*依赖外部容器的宽高*/
+.box {
+    display: flex;
+    background-color: #E5E4E5;
+    height: 100%;
+    padding: 5px;
+
+    .drawPanel {
+        margin: 0 2px;
+        width: 100%;
+        background: url('assets/canvas_bg.jpg') repeat;
+        display: inline-flex;
+        justify-content: center;
+        align-items: center;
+        border: 1px solid fade(gray, 20);
+        overflow: hidden;
+
+        .canvasDiv {
+            display: inline-block;
+        }
+    }
+}
