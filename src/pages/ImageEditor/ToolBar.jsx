@@ -7,14 +7,14 @@ import classnames from 'classnames';
 import style from './ToolBar.less';
 
 const Icons = [
-  { name: '绘制', type: 'highlight' },
-  { name: '箭头', type: 'arrow-right' },
-  { name: '直线', type: 'minus' },
-  { name: '虚线', type: 'small-dash' },
-  { name: '矩形', type: 'border' },
-  { name: '圆形', type: 'sync' },
-  { name: '文本', type: 'info' },
-  { name: '删除', type: 'delete' },
+  { name: '绘制',icon: require('assets/svgIcons/画笔.svg').default },
+  { name: '箭头',icon: require('assets/svgIcons/箭头.svg').default },
+  { name: '直线',icon: require('assets/svgIcons/直线.svg').default },
+  { name: '虚线',icon: require('assets/svgIcons/虚线.svg').default },
+  { name: '矩形',icon: require('assets/svgIcons/矩形.svg').default },
+  { name: '椭圆',icon: require('assets/svgIcons/椭圆.svg').default },
+  { name: '文本',icon: require('assets/svgIcons/文字.svg').default },
+  { name: '删除',icon: require('assets/svgIcons/垃圾桶.svg').default },
 ];
 
 const drawWidthArray = [
@@ -221,7 +221,7 @@ class MenuBar extends React.PureComponent {
           ...options,
         });
         break;
-      case '圆形': {
+      case '椭圆': {
         let rx = Math.abs(f_x - t_x) / 2;
         let ry = Math.abs(f_y - t_y) / 2;
         if (rx > options.strokeWidth) {
@@ -383,13 +383,13 @@ class MenuBar extends React.PureComponent {
                       value={_color}
                       onClick={this.colorPicker.bind(this, _color)}
                     >
-                      <Icon type="bg-colors" style={{ color: _color, fontSize: '25px' }} />
+                      <Icon component={require('assets/svgIcons/颜色.svg').default} style={{ color: _color, fontSize: '25px' }} />
                     </Radio.Button>
                   ))}
                 </Radio.Group>
               }
             >
-              <Icon type="bg-colors" style={{ color: this.state.color }} />
+              <Icon component={require('assets/svgIcons/颜色.svg').default} style={{ color: this.state.color }} />
             </Popover>
           </li>
           <li className={style.li}>
@@ -405,7 +405,7 @@ class MenuBar extends React.PureComponent {
                 </Radio.Group>
               }
             >
-              <Icon type="bold" />
+              <Icon component={require('assets/svgIcons/粗体.svg').default} />
             </Popover>
           </li>
           <Divider />
@@ -424,7 +424,7 @@ class MenuBar extends React.PureComponent {
                     { [style.focus]: item.name === this.state.liChecked },
                   ])}
                 >
-                  <Icon type={item.type} />
+                  <Icon component={item.icon} />
                 </li>
               );
               return result;
@@ -434,10 +434,10 @@ class MenuBar extends React.PureComponent {
         </ul>
         <ul>
           <li onClick={() => this.originImageClick()} title="原图" className={style.li}>
-            <Icon type="shrink" />
+            <Icon component={require('assets/svgIcons/原图.svg').default} />
           </li>
           <li onClick={() => this.submitClick()} title="提交" className={style.li}>
-            <Icon type="upload" />
+            <Icon component={require('assets/svgIcons/提交.svg').default} />
           </li>
         </ul>
       </div>

@@ -29,4 +29,28 @@ export default {
   alias: {
     assets: resolve(__dirname, 'src/assets'),
   },
+  hash: true,
+  history: 'hash',
+  urlLoaderExcludes: [/\.svg(\?v=\d+\.\d+\.\d+)?$/,],
+  chainWebpack(config) {
+    config.module
+      .rule('svg')
+      .test(/\.svg(\?v=\d+\.\d+\.\d+)?$/,)
+      .use([
+        {
+          loader: 'babel-loader',
+        },
+        {
+          loader: '@svgr/webpack',
+          options: {
+            babel: false,
+            icon: true,
+          },
+        },
+      ])
+      .loader(require.resolve('@svgr/webpack'));
+
+    // config woker
+    config.output.globalObject('self');
+  },
 }
